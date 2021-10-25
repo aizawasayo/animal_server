@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
+        },
+        "useBuiltIns": "usage", // 仅引入使用到的 polyfill (转换语法的代码)
+        "corejs": "3.6.5" // 当"useBuiltIns"指定为"usage"或"entry"时，此配置才有效果
+      }
+    ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
+}

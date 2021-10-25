@@ -1,0 +1,20 @@
+{
+  "apps": [
+    {
+      "name": "animal_server",
+      "script": "app.js",
+      "instances": 2,
+      "watch": true,
+      "ignore_watch": ["node_modules", "logs"],
+      "env_production": {
+        "NODE_ENV": "production"
+      },
+      "env_development": {
+        "NODE_ENV": "development"
+      },
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "error_file": "logs/err.log",
+      "out_file": "logs/out.log"
+    }
+  ]
+}

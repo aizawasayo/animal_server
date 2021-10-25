@@ -1,0 +1,10 @@
+{
+  "title": "动森数据服务器 ---- 正式环境",
+  "db": {
+    "user": "aizawasayo",
+    "pwd": "iwnini122900",
+    "host": "localhost",
+    "port": "27016",
+    "name": "animal"
+  }
+}

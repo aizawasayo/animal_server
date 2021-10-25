@@ -1,0 +1,36 @@
+const Router = require('@koa/router')
+const router = new Router()
+
+import getList from '@/middlewares/common/getList'
+import addData from '@/middlewares/common/add'
+import getById from '@/middlewares/common/getOne'
+import deleteById from '@/middlewares/common/delete'
+
+import Board from '@/model/board'
+
+// 列表路由
+router.get(
+  '/',
+  getList({
+    Model: Board,
+    conditionKeys: ['topic', 'user'],
+    initialSortKey: 'created_time',
+    ref: 'user',
+  })
+)
+
+// 添加功能路由
+router.post(
+  '/',
+  addData({ Model: Board, key: ['content'], addTime: true, uniqueName: '内容' })
+)
+
+// 查询功能路由
+router.get('/:id', getById({ Model: Board, ref: 'user' }))
+
+// 删除功能路由
+router.delete('/:id', deleteById({ Model: Board }))
+
+router.name = 'board'
+
+export default router
