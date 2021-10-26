@@ -27,7 +27,7 @@ router.post(
     Model: Guide,
     process: data => {
       const processedData = Object.assign({}, data)
-      if (data.author) processedData.author = processedData._id
+      if (data.author) processedData.author = processedData.author._id
       return processedData
     },
     key: ['title'],
