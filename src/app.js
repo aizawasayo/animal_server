@@ -31,7 +31,7 @@ mongoose
       'db.host'
     )}:${config.get('db.port')}/${config.get('db.name')}`
   )
-  .catch(err => console.log(err, '数据库连接成功'))
+  .catch(err => console.log(err, '数据库连接失败'))
 
 app.keys = ['aaiizzaawwaassaayyoo']
 app.use(

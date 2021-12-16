@@ -9,7 +9,7 @@ import deleteById from '@/middlewares/common/delete'
 import Artwork from '@/model/artwork'
 
 // 分页列表路由
-router.get('/', getList({ Model: Artwork, conditionKeys: ['hasFake'] }))
+router.get('/', getList({ Model: Artwork, conditionKeys: ['size', 'hasFake'] }))
 
 // 添加/编辑功能路由
 router.post('/', addData({ Model: Artwork }))

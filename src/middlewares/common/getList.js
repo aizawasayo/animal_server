@@ -54,9 +54,15 @@ export default props => {
       const filterList = []
       conditionKeys.forEach(key => {
         // 如果传的是数组，请求字段名后会有个 []
-        const val = ctx.query[key] ? ctx.query[key] : ctx.query[key + '[]']
-        filterList.push({ [key]: val })
+        let val = ctx.query[key] ? ctx.query[key] : ctx.query[key + '[]']
+        if (val) {
+          if (typeof val === 'string') {
+            val = val.split(',')
+          }
+          filterList.push({ [key]: val })
+        }
       })
+
       filterList.forEach(item => {
         if (item) {
           const ckey = Object.keys(item)[0]
@@ -69,10 +75,13 @@ export default props => {
     }
 
     // 排序条件
+
+    // 处理初始排序
     const sortKey = initialSortKey ? initialSortKey : 'name'
     let sortCondition = {
       [sortKey]: 1,
     }
+    // 如传了排序条件json对象，则按传的来
     if (sort) sortCondition = JSON.parse(sort)
 
     try {

@@ -11,7 +11,10 @@ import Fish from '@/model/fish'
 // 鱼类列表路由
 router.get(
   '/',
-  getList({ Model: Fish, conditionKeys: ['shadow', 'locale', 'rarity'] })
+  getList({
+    Model: Fish,
+    conditionKeys: ['shadow', 'locale', 'rarity', 'unlockCondition'],
+  })
 )
 
 // 鱼类添加功能路由

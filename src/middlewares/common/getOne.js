@@ -3,6 +3,7 @@ export default props => {
     const { id } = ctx.request.params
     const { Model, ref } = props
     const refKey = ref ? ref : ''
+
     try {
       // 返回值 doc: Object （没有符合条件的是 null）
       const doc = await Model.findById(id).populate(refKey).exec()
