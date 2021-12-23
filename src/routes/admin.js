@@ -31,7 +31,7 @@ adminRouter.post(
   '/single/upload',
   koaBody({
     multipart: true, // 是否解析 FormData 形式的表单数据 即处理 Content-Type 为 multipart/formdate 的请求，上传文件必须为 true
-    encoding: 'gzip', // 定义表单字段de的编码格式，默认 utf-8
+    encoding: 'gzip', // 定义表单字段的编码格式，默认 utf-8
     formidable: {
       uploadDir: path.join(process.cwd(), 'public/uploads/'), // 设置文件上传目录
       keepExtensions: true, // 保持文件的后缀
@@ -52,7 +52,7 @@ adminRouter.post(
   '/upload',
   koaBody({
     multipart: true, // 是否解析 FormData 形式的表单数据 即处理 Content-Type 为 multipart/formdate 的请求，上传文件必须为 true
-    encoding: 'gzip', // 定义表单字段de的编码格式，默认 utf-8
+    encoding: 'gzip', // 定义表单字段的编码格式，默认 utf-8
     formidable: {
       uploadDir: path.join(process.cwd(), 'public/uploads/'), // 设置文件上传目录
       keepExtensions: true, // 保持文件的后缀

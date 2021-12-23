@@ -2,7 +2,7 @@ const path = require('path')
 const Koa = require('koa')
 const serve = require('koa-static')
 const logger = require('koa-logger')
-const onerror = require('koa-onerror')
+// const onerror = require('koa-onerror')
 const koaBody = require('koa-body')
 const session = require('koa-session')
 const MongooseStore = require('koa-session-mongoose')
@@ -14,15 +14,19 @@ import errorHandler from '@/utils/errHandler.js'
 import adminRouter from '@/routes/admin'
 import indexRouter from '@/routes/index'
 
+// 全局定义一些异常类型，方便针对性抛出
+const errors = require('@/constant/http-exception')
+global.errs = errors
+
 const app = new Koa()
 
 /* koa 是洋葱模型
   一个请求匹配到的所有中间件，从【第一个】开始执行，一旦执行到 await next() 的时候就会暂停，进入到下一个匹配的中间件；
   到【最后一个】再回过头来倒着处理每个中间件 await 后面的程序，直到执行到【第一个】中间件。
 */
-// 需要捕获所有服务端实例的错误
-onerror(app)
-// 所以我们的错误捕获中间件要放在最前面，这一点和 express 非常不同
+// 需要捕获所有服务端实例的错误，优化错误信息
+// onerror(app)
+// 错误捕获中间件 await next() 后的内容会在最后执行，所以我们要把它放在最前面，这一点和 express 非常不同
 app.use(catchError)
 
 mongoose
@@ -31,7 +35,10 @@ mongoose
       'db.host'
     )}:${config.get('db.port')}/${config.get('db.name')}`
   )
-  .catch(err => console.log(err, '数据库连接失败'))
+  .catch(err => {
+    console.log(err)
+    throw new errs.HttpException('数据库连接失败')
+  })
 
 app.keys = ['aaiizzaawwaassaayyoo']
 app.use(
