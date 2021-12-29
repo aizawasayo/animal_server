@@ -40,6 +40,7 @@ mongoose
     throw new errs.HttpException('数据库连接失败')
   })
 
+// 设置签名的 cookie 密钥数组
 app.keys = ['aaiizzaawwaassaayyoo']
 app.use(
   session(
@@ -61,14 +62,14 @@ app.use(logger())
 // 处理 post 请求参数的中间件
 app.use(koaBody())
 
-// app.use(async (ctx, next) => {
-//   if (ctx.path === '/favicon.ico') return
-//   console.log(ctx.session)
-//   let n = ctx.session.views || 0
-//   ctx.session.views = ++n
+app.use(async (ctx, next) => {
+  if (ctx.path === '/favicon.ico') return
+  console.log(ctx.session)
+  // let n = ctx.session.views || 0
+  // ctx.session.views = ++n
 
-//   next()
-// })
+  await next()
+})
 
 // 注册管理后台路由中间件
 app.use(adminRouter.routes()).use(adminRouter.allowedMethods())

@@ -1,5 +1,5 @@
 import TradeComment from '@/model/trade_comment'
-import getList from '@/utils/common/getList'
+import getList from '@/middlewares/common/getList'
 
 export default async (ctx, next) => {
   const { page, pageSize, query, sort, aid } = ctx.query

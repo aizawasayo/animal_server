@@ -1,9 +1,9 @@
 const catchError = async (ctx, next) => {
   try {
     await next()
-    if (ctx.status === 404) {
-      throw new errs.NotFound()
-    }
+    // if (ctx.status === 404) {
+    //   throw new errs.NotFound()
+    // }
   } catch (err) {
     console.log('catch', err)
     if (err.errorCode) {

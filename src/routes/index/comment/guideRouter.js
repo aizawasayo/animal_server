@@ -3,9 +3,9 @@ const router = new Router()
 
 import GuideComment from '@/model/guide_comment'
 
-import AddData from '@/utils/common/add'
-import getById from '@/utils/common/getOne'
-import deleteById from '@/utils/common/delete'
+import AddData from '@/middlewares/common/add'
+import getById from '@/middlewares/common/getOne'
+import deleteById from '@/middlewares/common/delete'
 import commentList from './guideList'
 
 // 分页查询攻略评论列表路由

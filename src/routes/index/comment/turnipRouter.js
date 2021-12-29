@@ -3,9 +3,9 @@ const router = new Router()
 
 import TurnipComment from '@/model/turnip_comment'
 
-import AddData from '@/utils/common/add'
-import getById from '@/utils/common/getOne'
-import deleteById from '@/utils/common/delete'
+import AddData from '@/middlewares/common/add'
+import getById from '@/middlewares/common/getOne'
+import deleteById from '@/middlewares/common/delete'
 import commentList from './turnipList'
 
 // 分页查询菜市场评论列表

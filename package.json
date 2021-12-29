@@ -21,6 +21,7 @@
     "config": "^3.3.6",
     "core-js": "^3.18.2",
     "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.3",
     "koa-body": "^4.2.0",
     "koa-logger": "^3.2.1",

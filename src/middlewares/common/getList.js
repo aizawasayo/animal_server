@@ -9,6 +9,7 @@
  */
 export default props => {
   return async (ctx, next) => {
+    console.log(ctx.session)
     const {
       Model,
       initialQueryKey, // 搜索关键字对应字段
