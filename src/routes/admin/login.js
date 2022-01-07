@@ -5,14 +5,9 @@ const bcrypt = require('bcrypt')
 
 export default async (ctx, next) => {
   const { username, password } = ctx.request.body
-  if (username.trim().length == 0 || password.trim().length == 0) {
-    return (ctx.body = {
-      code: 400,
-      message: '请输入用户名或者密码',
-    })
-  }
+
   const user = await User.findOne({
-    username: username,
+    username,
   })
   if (user) {
     // 将客户端输入的密码和用户信息中的密码进行比对

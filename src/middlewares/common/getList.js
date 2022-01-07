@@ -5,6 +5,7 @@
  *  - initialqueryKey: String, 搜索关键字对应字段 默认 'name'
  *  - conditionKeys: Array, 筛选字段数组
  *  - initialSortKey: String, 初始排序字段，默认 'name'
+ *  - initialSortVal: Number, 初始排序顺序，默认 1 (正序)
  *  - ref: String, 联表查询字段名
  */
 export default props => {
@@ -15,6 +16,7 @@ export default props => {
       initialQueryKey, // 搜索关键字对应字段
       conditionKeys, // 筛选字段数组
       initialSortKey, // 初始排序字段
+      initialSortVal, //初始排序顺序
       ref, // 联表查询字段名
     } = props
 
@@ -79,8 +81,9 @@ export default props => {
 
     // 处理初始排序
     const sortKey = initialSortKey ? initialSortKey : 'name'
+    const sortVal = initialSortVal ? initialSortVal : 1
     let sortCondition = {
-      [sortKey]: 1,
+      [sortKey]: sortVal,
     }
     // 如传了排序条件json对象，则按传的来
     if (sort) sortCondition = JSON.parse(sort)

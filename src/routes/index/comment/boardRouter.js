@@ -3,31 +3,32 @@ const router = new Router()
 
 import BoardComment from '@/model/board_comment'
 
-import AddData from '@/middlewares/common/add'
+import getList from '@/middlewares/common/getList'
+import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
-import commentList from './boardList'
 
 // 分页查询森友墙评论列表
-router.get('/', commentList)
+router.get(
+  '/',
+  getList({
+    Model: BoardComment,
+    initialQueryKey: 'content',
+    conditionKeys: ['aid'],
+    initialSortKey: 'like',
+    initialSortVal: -1,
+    ref: 'uid',
+  })
+)
 
 // 添加森友墙评论路由
-router.post('/', async (ctx, next) => {
-  await addData({ ctx, next }, BoardComment, {
-    key: false,
-    addTime: true,
-  })
-})
+router.post('/', addData({ Model: BoardComment, addTime: true, key: false }))
 
 // 森友墙评论查询路由
-router.get('/:id', async (ctx, next) => {
-  await getById({ ctx, next }, BoardComment)
-})
+router.get('/:id', getById({ Model: BoardComment }))
 
 // 删除森友墙评论
-router.delete('/:id', async (ctx, next) => {
-  await deleteById({ ctx, next }, BoardComment)
-})
+router.delete('/:id', deleteById({ Model: BoardComment }))
 
 router.name = 'comment/board'
 

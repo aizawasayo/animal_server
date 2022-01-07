@@ -4,12 +4,17 @@ const requireDirectory = require('require-directory')
 
 function filterRouter(router, parentRouter) {
   const r = router.default
-  if (r instanceof Router)
+  if (r instanceof Router) {
     parentRouter.use('/' + r.name, r.routes()).use(r.allowedMethods())
+  }
 }
 
-//requireDirectory方法也支持opitons参数，配置响应的回调函数
+// requireDirectory方法也支持opitons参数，配置响应的回调函数
 export function registerRouter(path, parentRouter) {
+  // 参数说明：
+  // 第一个：固定参数 module
+  // 第二个：是要加载的模块的路径
+  // 第三个：每加载一个模块时执行的函数
   requireDirectory(module, path, { visit: r => filterRouter(r, parentRouter) })
 }
 

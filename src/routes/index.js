@@ -9,7 +9,7 @@ indexRouter.get('/', async (ctx, next) => {
   await next()
 })
 
-registerRouter(__dirname + '/index', indexRouter)
+registerRouter(__dirname + '/index/comment', indexRouter)
 
 // getDirNames(__dirname + '/index/comment').forEach(file => {
 //   // const router = require(`./index/${file}/${file}Router`).default

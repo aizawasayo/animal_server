@@ -3,7 +3,7 @@ import { addSuccess, editSuccess } from '@/constant/resInfo'
 /**
  * props: Object 其它参数
  *  - Model: 表模型名
- *  - key: Array, 新增数据不能重复值的键名数组，默认是['name'] / 若值为nonUnique则表示无需查重
+ *  - key: Array, 新增数据不能重复值的键名数组，默认是['name'] / 若值为 false 则表示无需查重
  *  - addTime: Boolean, 是否添加创建时间
  *  - uniqueName: String, 查重处理返回的重复字段名称
  */
