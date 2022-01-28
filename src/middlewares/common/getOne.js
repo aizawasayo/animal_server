@@ -14,10 +14,6 @@ export default props => {
         data: doc,
       }
     } catch (err) {
-      // ctx.body = {
-      //   code: 400,
-      //   message: '查询失败' + err.message,
-      // }
       ctx.app.emit(
         'error',
         { code: 400, message: '查询失败' + err.message },

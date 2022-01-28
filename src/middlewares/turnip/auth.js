@@ -13,10 +13,7 @@ export default props => {
       })
       if (doc.length > 0) {
         // 如果该用户已经发布过信息并该条信息未到期
-        return (ctx.body = {
-          code: 400,
-          message: '您发布的信息还未到期，请勿重复添加',
-        })
+        throw new errs.HttpException('您发布的信息还未到期，请勿重复添加')
       }
       await next()
     } else {

@@ -10,7 +10,6 @@
  */
 export default props => {
   return async (ctx, next) => {
-    console.log(ctx.session)
     const {
       Model,
       initialQueryKey, // 搜索关键字对应字段
@@ -112,10 +111,7 @@ export default props => {
         },
       }
     } catch (err) {
-      ctx.body = {
-        code: 400,
-        message: '列表查询失败' + err.message,
-      }
+      throw new errs.HttpException('列表查询失败：' + err.message)
     }
   }
 }

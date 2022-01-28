@@ -17,11 +17,7 @@ module.exports = async (ctx, next) => {
       username: data.username,
     }).exec()
     if (user) {
-      ctx.body = {
-        code: 409,
-        message: '用户名已经被占用',
-      }
-      return
+      throw new errs.ParameterException('用户名已经被占用', 10000, 409)
     }
     if (data.email) {
       // 查询该使用邮箱的用户是否已存在
@@ -29,11 +25,7 @@ module.exports = async (ctx, next) => {
         email: data.email,
       })
       if (email) {
-        ctx.body = {
-          code: 409,
-          message: '邮箱已经被占用',
-        }
-        return
+        throw new errs.ParameterException('邮箱已经被占用', 10000, 409)
       }
     }
     const salt = await bcrypt.genSalt(10)
@@ -42,9 +34,6 @@ module.exports = async (ctx, next) => {
     ctx.body = addSuccess
   } catch (err) {
     //验证没有通过
-    ctx.body = {
-      code: 400,
-      message: err.message,
-    }
+    throw new errs.ParameterException(err.message)
   }
 }

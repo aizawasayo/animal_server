@@ -64,7 +64,7 @@ app.use(koaBody())
 
 app.use(async (ctx, next) => {
   if (ctx.path === '/favicon.ico') return
-  console.log(ctx.session)
+  // console.log(ctx.session)
   // let n = ctx.session.views || 0
   // ctx.session.views = ++n
 

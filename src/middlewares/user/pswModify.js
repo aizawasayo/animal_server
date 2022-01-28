@@ -23,10 +23,7 @@ module.exports = async (ctx, next) => {
       }
     } else {
       // 密码比对失败
-      ctx.body = {
-        code: 400,
-        message: '原密码有误！',
-      }
+      throw new errs.ParameterException('原密码有误！')
     }
   } catch (err) {
     ctx.app.emit(

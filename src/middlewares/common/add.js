@@ -20,13 +20,13 @@ export default props => {
       if (addTime) postData.created_time = Date.parse(new Date()) / 1000
       try {
         // 返回值 docs : Array|Object （返回成功创建的数据文档/文档数组）
-        await Model.create(postData)
-        ctx.body = addSuccess
-      } catch (err) {
+        const doc = await Model.create(postData)
         ctx.body = {
-          code: 400,
-          message: '添加失败' + err.message,
+          data: doc,
+          ...addSuccess,
         }
+      } catch (err) {
+        throw new errs.HttpException('添加失败' + err.message)
       }
     }
     if (postData._id) {
@@ -36,22 +36,28 @@ export default props => {
         await Model.findByIdAndUpdate(postData._id, postData).exec()
         ctx.body = editSuccess
       } catch (err) {
-        ctx.body = {
-          code: 400,
-          message: err,
-        }
+        throw new errs.HttpException('添加失败：' + err.message)
       }
     } else {
       // 新增数据
       if (uniqueKey) {
         // 查重处理
         let condition = {}
-        uniqueKey.forEach(item => (condition[item] = postData[item]))
-        const doc = await Model.findOne(condition)
-        if (doc) {
-          ctx.body = {
-            code: 409,
-            message: `该${uniqueText}已存在，请勿重复添加`,
+        uniqueKey.forEach(item => {
+          if (postData[item]) {
+            condition[item] = postData[item]
+          }
+        })
+        if (Object.keys(condition).length) {
+          const doc = await Model.findOne(condition)
+          if (doc) {
+            throw new errs.ParameterException(
+              `该${uniqueText}已存在，请勿重复添加`,
+              10000,
+              409
+            )
+          } else {
+            await addItem()
           }
         } else {
           await addItem()

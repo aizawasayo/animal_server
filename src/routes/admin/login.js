@@ -30,15 +30,9 @@ export default async (ctx, next) => {
         },
       }
     } else {
-      ctx.body = {
-        code: 400,
-        message: '密码错误',
-      }
+      throw errs.ParameterException('密码错误！')
     }
   } else {
-    ctx.body = {
-      code: 400,
-      message: '用户名错误',
-    }
+    throw errs.ParameterException('用户名错误！')
   }
 }

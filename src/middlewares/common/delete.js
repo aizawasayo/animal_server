@@ -2,11 +2,7 @@
  * props: Object
  *  - Model: 表模型名
  */
-import {
-  deleteSuccess,
-  multideleteSuccess,
-  deleteFailed,
-} from '@/constant/resInfo'
+import { deleteSuccess, multideleteSuccess } from '@/constant/resInfo'
 
 export default props => {
   return async (ctx, next) => {
@@ -20,7 +16,7 @@ export default props => {
         if (response.deletedCount) {
           ctx.body = multideleteSuccess
         } else {
-          ctx.body = deleteFailed
+          throw errs.HttpException('删除失败')
         }
       } catch (err) {
         next(err)
@@ -32,7 +28,7 @@ export default props => {
         if (response.deletedCount) {
           ctx.body = deleteSuccess
         } else {
-          ctx.body = deleteFailed
+          throw errs.HttpException('删除失败')
         }
       } catch (err) {
         ctx.app.emit(

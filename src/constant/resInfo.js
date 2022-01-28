@@ -15,8 +15,4 @@ module.exports = {
     code: 200,
     message: '批量删除成功',
   },
-  deleteFailed: {
-    code: 400,
-    message: '删除失败',
-  },
 }

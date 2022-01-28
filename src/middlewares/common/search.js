@@ -18,10 +18,7 @@ export default props => {
         data: response,
       }
     } catch (err) {
-      ctx.body = {
-        code: 400,
-        message: '查询失败' + err.message,
-      }
+      throw new errs.HttpException('查询失败：' + err.message)
     }
   }
 }
