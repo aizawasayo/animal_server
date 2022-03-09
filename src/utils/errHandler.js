@@ -1,5 +1,5 @@
 export default function errorHandler(err, ctx) {
-  console.log('onerror', err)
+  // console.log('onerror', err)
   // 未知异常状态，默认使用 500
   ctx.status = err.status || 500
 

@@ -24,7 +24,6 @@ export default props => {
     } else {
       try {
         const response = await Model.deleteOne({ _id: { $in: id } }).exec()
-        console.log(response)
         if (response.deletedCount) {
           ctx.body = deleteSuccess
         } else {

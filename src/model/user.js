@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     maxlength: 10,
   },
+  collected: Array, // 已拥有图鉴列表，单个{type, id} 的形式
   favorites: Array, // 收藏
 })
 

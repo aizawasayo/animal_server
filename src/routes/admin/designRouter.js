@@ -9,7 +9,16 @@ import deleteById from '@/middlewares/common/delete'
 import Design from '@/model/design'
 
 // 分页查询列表路由
-router.get('/', getList({ Model: Design, conditionKeys: ['type', 'user'] }))
+router.get(
+  '/',
+  getList({
+    Model: Design,
+    conditionKeys: ['type', 'user'],
+    initialSortKey: 'created_time',
+    initialSortVal: -1,
+    ref: 'user',
+  })
+)
 
 // 添加功能路由
 router.post('/', addData({ Model: Design, addTime: true }))

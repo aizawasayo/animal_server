@@ -1,5 +1,5 @@
 export default async (ctx, next) => {
-  console.log(ctx.session)
+  // console.log(ctx.session)
   delete ctx.session.username
   //   next()
   ctx.body = {
