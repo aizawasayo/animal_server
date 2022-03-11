@@ -6,6 +6,10 @@ import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
 import getAll from '@/middlewares/common/getAll'
+import {
+  removeAvatar,
+  removeAllAvatar,
+} from '@/middlewares/common/removeAvatar'
 
 import Banner from '@/model/banner'
 
@@ -29,14 +33,25 @@ router.get(
 // 焦点图添加功能路由
 router.post(
   '/',
-  addData({ Model: Banner, key: ['title'], addTime: true, uniqueName: '标题' })
+  removeAvatar(Banner, 'avatar'),
+  addData({
+    Model: Banner,
+    key: ['title'],
+    addTime: true,
+    uniqueName: '标题',
+    // imageType: 'avatar',
+  })
 )
 
 // 焦点图查询功能路由
 router.get('/:id', getById({ Model: Banner }))
 
 // 删除焦点图
-router.delete('/:id', deleteById({ Model: Banner }))
+router.delete(
+  '/:id',
+  removeAllAvatar(Banner, 'avatar'),
+  deleteById({ Model: Banner })
+)
 
 router.name = 'banner'
 

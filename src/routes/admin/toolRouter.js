@@ -6,6 +6,10 @@ import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
 import searchAll from '@/middlewares/common/search'
+import {
+  removeAvatar,
+  removeAllAvatar,
+} from '@/middlewares/common/removeAvatar'
 
 import Tool from '@/model/tool'
 
@@ -22,13 +26,13 @@ router.get(
 router.get('/search', searchAll({ Model: Tool }))
 
 // 工具添加功能路由
-router.post('/', addData({ Model: Tool }))
+router.post('/', removeAvatar(Tool), addData({ Model: Tool }))
 
 // 工具查询功能路由
 router.get('/:id', getById({ Model: Tool }))
 
 // 工具删除功能路由
-router.delete('/:id', deleteById({ Model: Tool }))
+router.delete('/:id', removeAllAvatar(Tool), deleteById({ Model: Tool }))
 
 router.name = 'tool'
 

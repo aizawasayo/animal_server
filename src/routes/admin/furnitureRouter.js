@@ -6,6 +6,7 @@ import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
 import searchAll from '@/middlewares/common/search'
+import { removeImage, removeAllImage } from '@/middlewares/common/removeImage'
 
 import Furniture from '@/model/furniture'
 
@@ -31,13 +32,17 @@ router.get(
 router.get('/search', searchAll({ Model: Furniture }))
 
 // 添加功能路由
-router.post('/', addData({ Model: Furniture }))
+router.post('/', removeImage(Furniture), addData({ Model: Furniture }))
 
 // 查询功能路由
 router.get('/:id', getById({ Model: Furniture }))
 
 // 删除功能路由
-router.delete('/:id', deleteById({ Model: Furniture }))
+router.delete(
+  '/:id',
+  removeAllImage(Furniture),
+  deleteById({ Model: Furniture })
+)
 
 router.name = 'furniture'
 

@@ -5,6 +5,10 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import {
+  removeAvatar,
+  removeAllAvatar,
+} from '@/middlewares/common/removeAvatar'
 
 import Insect from '@/model/insect'
 
@@ -18,13 +22,13 @@ router.get(
 )
 
 // 昆虫添加功能路由
-router.post('/', addData({ Model: Insect }))
+router.post('/', removeAvatar(Insect), addData({ Model: Insect }))
 
 // 昆虫查询功能路由
 router.get('/:id', getById({ Model: Insect }))
 
 // 昆虫删除功能路由
-router.delete('/:id', deleteById({ Model: Insect }))
+router.delete('/:id', removeAllAvatar(Insect), deleteById({ Model: Insect }))
 
 router.name = 'insect'
 
