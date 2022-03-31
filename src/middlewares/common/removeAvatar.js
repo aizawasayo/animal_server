@@ -13,7 +13,7 @@ export const removeAvatar = (Model, imgKey) => {
       try {
         const doc = await Model.findById(postData._id)
 
-        //  单图类型
+        // 单图类型
         if (doc[imageType] && doc[imageType] !== postData[imageType]) {
           if (fs.existsSync(`${imageDir}${doc[imageType]}`)) {
             fs.unlinkSync(`${imageDir}${doc[imageType]}`)

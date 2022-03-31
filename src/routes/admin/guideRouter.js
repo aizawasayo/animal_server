@@ -27,7 +27,7 @@ router.get(
 // 攻略添加功能路由
 router.post(
   '/',
-  removeAvatar(Guide),
+  removeAvatar(Guide, 'image_uri'),
   addData({
     Model: Guide,
     process: data => {
@@ -45,7 +45,11 @@ router.post(
 router.get('/:id', getById({ Model: Guide, ref: 'author' }))
 
 // 删除攻略
-router.delete('/:id', removeAllAvatar(Guide), deleteById({ Model: Guide }))
+router.delete(
+  '/:id',
+  removeAllAvatar(Guide, 'image_uri'),
+  deleteById({ Model: Guide })
+)
 
 router.name = 'guide'
 

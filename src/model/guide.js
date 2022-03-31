@@ -10,30 +10,33 @@ const guideSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, '作者id不能为空']
+    required: [true, '作者id不能为空'],
   },
   type: String, // 分类
   content_short: String,
   content: String, // 文章内容
-  status: { // 是否发布，published：已发布 / draft：未发布（草稿）/ deleted：已删除
+  status: {
+    // 是否发布，published：已发布 / draft：未发布（草稿）/ deleted：已删除
     type: String,
-    default: 'draft'
+    default: 'draft',
   },
-  display_time: { // 前台展示时间
+  display_time: {
+    // 前台展示时间
     type: Number,
-    maxlength: 10
+    maxlength: 10,
   },
   source_uri: String, // 文章外链
-  image_uri: String, // 文章图片
+  image_uri: String, // 文章主图
   platforms: Array, // 来源平台
-  comment_disabled: { // 是否能评论
+  comment_disabled: {
+    // 是否能评论
     type: Boolean,
-    default: false
+    default: false,
   },
   comments: Array, // 评论数量，存评论id
   likes: Array, // 点赞数量, 存用户id 不可重复
-  photoSrc: String, // 主图
-  created_time: { // 新增时间
+  created_time: {
+    // 新增时间
     type: Number,
     maxlength: 10,
   },

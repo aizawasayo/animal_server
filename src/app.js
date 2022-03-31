@@ -48,6 +48,8 @@ app.use(
       key: 'koa.animal',
       maxAge: 24 * 60 * 60 * 1000,
       store: new MongooseStore(),
+      // secure: true /** (boolean) secure cookie*/,
+      // sameSite: null,
     },
     app
   )

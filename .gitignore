@@ -3,4 +3,5 @@ node_modules
 dist
 *.local
 config
+config-server
 public/uploads

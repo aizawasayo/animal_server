@@ -21,6 +21,11 @@ export default async (ctx, next) => {
         expiresIn: '1d',
       })
       // ctx.status = 200
+      // Set the new style cookie
+      // ctx.cookies.set('3pcookie', 'value', { sameSite: 'none', secure: true })
+      // And set the same value in the legacy cookie
+      // ctx.cookies.set('3pcookie-legacy', 'value', { secure: true })
+
       ctx.body = {
         code: 200,
         message: '登录成功',
