@@ -6,6 +6,7 @@ import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
 import authData from '@/middlewares/turnip/auth'
+import auth from '@/middlewares/user/auth'
 
 import Turnip from '@/model/turnip'
 
@@ -24,6 +25,7 @@ router.get(
 // 大头菜添加功能路由
 router.post(
   '/',
+  auth,
   authData({ Model: Turnip }),
   addData({ Model: Turnip, key: ['detail'], addTime: true, uniqueName: '内容' })
 )
@@ -32,7 +34,7 @@ router.post(
 router.get('/:id', getById({ Model: Turnip, ref: 'user' }))
 
 // 大头菜删除功能路由
-router.delete('/:id', deleteById({ Model: Turnip }))
+router.delete('/:id', auth, deleteById({ Model: Turnip }))
 
 router.name = 'turnip'
 

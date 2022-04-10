@@ -7,6 +7,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import auth from '@/middlewares/user/auth'
 
 // 分页查询攻略评论列表路由
 router.get(
@@ -22,13 +23,17 @@ router.get(
 )
 
 // 攻略评论添加路由
-router.post('/', addData({ Model: GuideComment, addTime: true, key: false }))
+router.post(
+  '/',
+  auth,
+  addData({ Model: GuideComment, addTime: true, key: false })
+)
 
 // 攻略评论查询路由
 router.get('/:id', getById({ Model: GuideComment }))
 
 // 删除攻略评论
-router.delete('/:id', deleteById({ Model: GuideComment }))
+router.delete('/:id', auth, deleteById({ Model: GuideComment }))
 
 router.name = 'comment/guide'
 

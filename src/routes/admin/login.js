@@ -19,6 +19,7 @@ export default async (ctx, next) => {
       const { _id, username } = user
       const token = jwt.sign({ _id, username }, 'koa.animal_secret', {
         expiresIn: '1d',
+        // expiresIn: 60 * 60, // 数字类型单位是秒
       })
       // ctx.status = 200
       // Set the new style cookie

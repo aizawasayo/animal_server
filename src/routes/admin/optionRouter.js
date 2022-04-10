@@ -7,7 +7,7 @@ import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
 import getAll from '@/middlewares/common/getAll'
 import searchAll from '@/middlewares/common/search'
-
+import auth from '@/middlewares/user/auth'
 import Option from '@/model/option'
 
 // 分页查询选项列表
@@ -32,6 +32,7 @@ router.get('/search', searchAll({ Model: Option }))
 // 选项添加功能路由
 router.post(
   '/',
+  auth,
   addData({
     Model: Option,
     key: ['name', 'type'],
@@ -44,7 +45,7 @@ router.post(
 router.get('/:id', getById({ Model: Option }))
 
 // 选项删除功能路由
-router.delete('/:id', deleteById({ Model: Option }))
+router.delete('/:id', auth, deleteById({ Model: Option }))
 
 router.name = 'option'
 

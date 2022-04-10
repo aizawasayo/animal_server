@@ -5,6 +5,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import auth from '@/middlewares/user/auth'
 import {
   removeAvatar,
   removeAllAvatar,
@@ -27,6 +28,7 @@ router.get(
 // 攻略添加功能路由
 router.post(
   '/',
+  auth,
   removeAvatar(Guide, 'image_uri'),
   addData({
     Model: Guide,
@@ -47,6 +49,7 @@ router.get('/:id', getById({ Model: Guide, ref: 'author' }))
 // 删除攻略
 router.delete(
   '/:id',
+  auth,
   removeAllAvatar(Guide, 'image_uri'),
   deleteById({ Model: Guide })
 )

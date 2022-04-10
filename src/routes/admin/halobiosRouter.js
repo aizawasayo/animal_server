@@ -5,6 +5,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import auth from '@/middlewares/user/auth'
 import {
   removeAvatar,
   removeAllAvatar,
@@ -21,7 +22,7 @@ router.get(
   })
 )
 // 海洋生物添加功能路由
-router.post('/', removeAvatar(Halobios), addData({ Model: Halobios }))
+router.post('/', auth, removeAvatar(Halobios), addData({ Model: Halobios }))
 
 // 海洋生物查询功能路由
 router.get('/:id', getById({ Model: Halobios }))
@@ -29,6 +30,7 @@ router.get('/:id', getById({ Model: Halobios }))
 // 海洋生物删除功能路由
 router.delete(
   '/:id',
+  auth,
   removeAllAvatar(Halobios),
   deleteById({ Model: Halobios })
 )

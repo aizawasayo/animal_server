@@ -6,6 +6,7 @@ import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
 import getAll from '@/middlewares/common/getAll'
+import auth from '@/middlewares/user/auth'
 import {
   removeAvatar,
   removeAllAvatar,
@@ -33,6 +34,7 @@ router.get(
 // 焦点图添加功能路由
 router.post(
   '/',
+  auth,
   removeAvatar(Banner, 'avatar'),
   addData({
     Model: Banner,
@@ -49,6 +51,7 @@ router.get('/:id', getById({ Model: Banner }))
 // 删除焦点图
 router.delete(
   '/:id',
+  auth,
   removeAllAvatar(Banner, 'avatar'),
   deleteById({ Model: Banner })
 )

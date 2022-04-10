@@ -5,6 +5,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import auth from '@/middlewares/user/auth'
 import {
   removeAvatar,
   removeAllAvatar,
@@ -30,7 +31,7 @@ router.get(
 )
 
 // 岛民添加功能路由
-router.post('/', removeAvatar(Islander), addData({ Model: Islander }))
+router.post('/', auth, removeAvatar(Islander), addData({ Model: Islander }))
 
 // 岛民查询功能路由
 router.get('/:id', getById({ Model: Islander }))
@@ -38,6 +39,7 @@ router.get('/:id', getById({ Model: Islander }))
 // 岛民删除功能路由
 router.delete(
   '/:id',
+  auth,
   removeAllAvatar(Islander),
   deleteById({ Model: Islander })
 )

@@ -7,6 +7,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import auth from '@/middlewares/user/auth'
 
 // 分页查询交易评论列表路由
 router.get(
@@ -22,13 +23,17 @@ router.get(
 )
 
 // 交易评论添加路由
-router.post('/', addData({ Model: TradeComment, addTime: true, key: false }))
+router.post(
+  '/',
+  auth,
+  addData({ Model: TradeComment, addTime: true, key: false })
+)
 
 // 交易评论查询路由
 router.get('/:id', getById({ Model: TradeComment }))
 
 // 删除交易评论
-router.delete('/:id', deleteById({ Model: TradeComment }))
+router.delete('/:id', auth, deleteById({ Model: TradeComment }))
 
 router.name = 'comment/trade'
 

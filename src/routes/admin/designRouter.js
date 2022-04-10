@@ -5,6 +5,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import auth from '@/middlewares/user/auth'
 import { removeImage, removeAllImage } from '@/middlewares/common/removeImage'
 
 import Design from '@/model/design'
@@ -22,13 +23,23 @@ router.get(
 )
 
 // 添加功能路由
-router.post('/', removeImage(Design), addData({ Model: Design, addTime: true }))
+router.post(
+  '/',
+  auth,
+  removeImage(Design),
+  addData({ Model: Design, addTime: true })
+)
 
 // 查询功能路由
 router.get('/:id', getById({ Model: Design, ref: 'user' }))
 
 // 删除功能路由
-router.delete('/:id', removeAllImage(Design), deleteById({ Model: Design }))
+router.delete(
+  '/:id',
+  auth,
+  removeAllImage(Design),
+  deleteById({ Model: Design })
+)
 
 router.name = 'design'
 

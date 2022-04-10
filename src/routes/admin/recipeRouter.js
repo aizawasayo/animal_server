@@ -6,6 +6,7 @@ import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
 import searchAll from '@/middlewares/common/search'
+import auth from '@/middlewares/user/auth'
 import {
   removeAvatar,
   removeAllAvatar,
@@ -26,13 +27,18 @@ router.get(
 router.get('/search', searchAll({ Model: Recipe }))
 
 // 配方添加功能路由
-router.post('/', removeAvatar(Recipe), addData({ Model: Recipe }))
+router.post('/', auth, removeAvatar(Recipe), addData({ Model: Recipe }))
 
 // 配方查询功能路由
 router.get('/:id', getById({ Model: Recipe }))
 
 // 配方删除功能路由
-router.delete('/:id', removeAllAvatar(Recipe), deleteById({ Model: Recipe }))
+router.delete(
+  '/:id',
+  auth,
+  removeAllAvatar(Recipe),
+  deleteById({ Model: Recipe })
+)
 
 router.name = 'recipe'
 

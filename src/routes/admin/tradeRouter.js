@@ -5,7 +5,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
-
+import auth from '@/middlewares/user/auth'
 import Trade from '@/model/trade'
 
 // 交易列表路由
@@ -23,6 +23,7 @@ router.get(
 // 交易添加功能路由
 router.post(
   '/',
+  auth,
   addData({ Model: Trade, key: ['detail'], addTime: true, uniqueName: '内容' })
 )
 
@@ -30,7 +31,7 @@ router.post(
 router.get('/:id', getById({ Model: Trade, ref: 'user' }))
 
 // 交易删除功能路由
-router.delete('/:id', deleteById({ Model: Trade }))
+router.delete('/:id', auth, deleteById({ Model: Trade }))
 
 router.name = 'trade'
 

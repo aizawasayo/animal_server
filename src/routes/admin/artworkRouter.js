@@ -5,6 +5,7 @@ import getList from '@/middlewares/common/getList'
 import addData from '@/middlewares/common/add'
 import getById from '@/middlewares/common/getOne'
 import deleteById from '@/middlewares/common/delete'
+import auth from '@/middlewares/user/auth'
 import { removeImage, removeAllImage } from '@/middlewares/common/removeImage'
 
 import Artwork from '@/model/artwork'
@@ -13,13 +14,18 @@ import Artwork from '@/model/artwork'
 router.get('/', getList({ Model: Artwork, conditionKeys: ['size', 'hasFake'] }))
 
 // 添加/编辑功能路由
-router.post('/', removeImage(Artwork), addData({ Model: Artwork }))
+router.post('/', auth, removeImage(Artwork), addData({ Model: Artwork }))
 
 // 查询功能路由
 router.get('/:id', getById({ Model: Artwork }))
 
 // 删除功能路由
-router.delete('/:id', removeAllImage(Artwork), deleteById({ Model: Artwork }))
+router.delete(
+  '/:id',
+  auth,
+  removeAllImage(Artwork),
+  deleteById({ Model: Artwork })
+)
 
 router.name = 'artwork'
 
