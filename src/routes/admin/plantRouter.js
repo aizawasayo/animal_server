@@ -15,7 +15,7 @@ import {
 import Plant from '@/model/plant'
 
 // 植物列表路由
-router.get('/', getList({ Model: Plant, conditionKeys: ['type', 'channel'] }))
+router.get('/', getList({ Model: Plant }))
 
 // 实时搜索植物名
 router.get('/search', searchAll({ Model: Plant }))

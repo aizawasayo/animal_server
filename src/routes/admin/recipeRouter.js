@@ -15,13 +15,7 @@ import {
 import Recipe from '@/model/recipe'
 
 //配方列表路由
-router.get(
-  '/',
-  getList({
-    Model: Recipe,
-    conditionKeys: ['type', 'channels', 'size', 'character', 'npc'],
-  })
-)
+router.get('/', getList({ Model: Recipe }))
 
 // 实时搜索配方名
 router.get('/search', searchAll({ Model: Recipe }))

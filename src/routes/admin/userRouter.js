@@ -23,7 +23,6 @@ router.get(
   getList({
     Model: User,
     initialQueryKey: ['username', 'nickname'],
-    conditionKeys: ['position', 'roles', 'state'],
     initialSortKey: 'username',
   })
 )

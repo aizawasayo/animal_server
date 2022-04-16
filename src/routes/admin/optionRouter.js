@@ -15,7 +15,6 @@ router.get(
   '/',
   getList({
     Model: Option,
-    conditionKeys: ['type'],
     initialSortKey: 'orderNum',
   })
 )

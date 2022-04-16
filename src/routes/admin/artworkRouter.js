@@ -11,7 +11,7 @@ import { removeImage, removeAllImage } from '@/middlewares/common/removeImage'
 import Artwork from '@/model/artwork'
 
 // 分页列表路由
-router.get('/', getList({ Model: Artwork, conditionKeys: ['size', 'hasFake'] }))
+router.get('/', getList({ Model: Artwork }))
 
 // 添加/编辑功能路由
 router.post('/', auth, removeImage(Artwork), addData({ Model: Artwork }))

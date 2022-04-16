@@ -19,7 +19,6 @@ router.get(
   getList({
     Model: Guide,
     initialQueryKey: 'title',
-    conditionKeys: ['comment_disabled', 'status', 'author'],
     initialSortKey: 'created_time',
     ref: 'author',
   })

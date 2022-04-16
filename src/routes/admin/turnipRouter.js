@@ -16,7 +16,6 @@ router.get(
   getList({
     Model: Turnip,
     initialQueryKey: 'detail',
-    conditionKeys: ['exchangeType', 'user'],
     initialSortKey: 'validTime',
     ref: 'user',
   })

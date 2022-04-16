@@ -14,21 +14,7 @@ import {
 import Islander from '@/model/islander'
 
 // 岛民列表路由
-router.get(
-  '/',
-  getList({
-    Model: Islander,
-    conditionKeys: [
-      'sex',
-      'monthStr',
-      'birth',
-      'breed',
-      'character',
-      'voice',
-      'hobby',
-    ],
-  })
-)
+router.get('/', getList({ Model: Islander }))
 
 // 岛民添加功能路由
 router.post('/', auth, removeAvatar(Islander), addData({ Model: Islander }))

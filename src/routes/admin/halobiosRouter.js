@@ -18,7 +18,6 @@ router.get(
   '/',
   getList({
     Model: Halobios,
-    conditionKeys: ['shadow', 'locale', 'unlockCondition'],
   })
 )
 // 海洋生物添加功能路由

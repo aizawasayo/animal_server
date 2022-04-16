@@ -15,7 +15,6 @@ router.get(
   '/',
   getList({
     Model: Design,
-    conditionKeys: ['type', 'user'],
     initialSortKey: 'created_time',
     initialSortVal: -1,
     ref: 'user',

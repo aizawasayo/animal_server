@@ -15,7 +15,6 @@ router.get(
   '/',
   getList({
     Model: Board,
-    conditionKeys: ['topic', 'user'],
     initialSortKey: 'created_time',
     ref: 'user',
   })

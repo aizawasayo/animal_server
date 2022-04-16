@@ -14,13 +14,7 @@ import {
 import Insect from '@/model/insect'
 
 // 昆虫列表路由
-router.get(
-  '/',
-  getList({
-    Model: Insect,
-    conditionKeys: ['locale', 'rarity', 'unlockCondition', 'weatherCondition'],
-  })
-)
+router.get('/', getList({ Model: Insect }))
 
 // 昆虫添加功能路由
 router.post('/', auth, removeAvatar(Insect), addData({ Model: Insect }))

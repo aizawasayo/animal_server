@@ -1,9 +1,10 @@
 // 分页查询
+
 /**
  * props: Object
  *  - Model: 表模型名
  *  - initialqueryKey: String, 搜索关键字对应字段 默认 'name'
- *  - conditionKeys: Array, 筛选字段数组
+ *  - ❌ conditionKeys: Array, 筛选字段数组（no use，划掉）
  *  - initialSortKey: String, 初始排序字段，默认 'name'
  *  - initialSortVal: Number, 初始排序顺序，默认 1 (正序)
  *  - ref: String, 联表查询字段名
@@ -13,7 +14,7 @@ export default props => {
     const {
       Model,
       initialQueryKey, // 搜索关键字对应字段
-      conditionKeys, // 筛选字段数组
+      // conditionKeys, // 筛选字段数组
       initialSortKey, // 初始排序字段
       initialSortVal, //初始排序顺序
       ref, // 联表查询字段名
@@ -51,18 +52,23 @@ export default props => {
       $or: queryKey, //多条件，数组
     }
 
-    // 筛选条件匹配
+    // 其他筛选条件匹配
+    let conditionKeys = []
+    for (let key in ctx.query) {
+      if (!['page', 'pageSize', 'query', 'sort'].includes(key))
+        conditionKeys.push(key)
+    }
+
     if (conditionKeys && conditionKeys.length > 0) {
       const filterList = []
       conditionKeys.forEach(key => {
         // 如果传的是数组，请求字段名后会有个 []
-        let val = ctx.query[key] ? ctx.query[key] : ctx.query[key + '[]']
-        if (val) {
-          if (typeof val === 'string') {
-            val = val.split(',')
-          }
-          filterList.push({ [key]: val })
+        const realKey = key.replace('[]', '')
+        let val = ctx.query[key]
+        if (val && typeof val === 'string') {
+          val = val.split(',')
         }
+        filterList.push({ [realKey]: val })
       })
 
       filterList.forEach(item => {
@@ -77,7 +83,6 @@ export default props => {
     }
 
     // 排序条件
-
     // 处理初始排序
     const sortKey = initialSortKey ? initialSortKey : 'name'
     const sortVal = initialSortVal ? initialSortVal : 1

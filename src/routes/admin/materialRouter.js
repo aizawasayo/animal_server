@@ -15,13 +15,7 @@ import {
 import Material from '@/model/material'
 
 // 素材列表路由
-router.get(
-  '/',
-  getList({
-    Model: Material,
-    conditionKeys: ['channels', 'season', 'activity'],
-  })
-)
+router.get('/', getList({ Model: Material }))
 
 //实时搜索材料名
 router.get('/search', searchAll({ Model: Material }))

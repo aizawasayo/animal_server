@@ -14,7 +14,6 @@ router.get(
   getList({
     Model: Trade,
     initialQueryKey: 'detail',
-    conditionKeys: ['exchangeType', 'user'],
     initialSortKey: 'validTime',
     ref: 'user',
   })

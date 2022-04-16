@@ -15,7 +15,6 @@ router.get(
   getList({
     Model: BoardComment,
     initialQueryKey: 'content',
-    conditionKeys: ['aid'],
     initialSortKey: 'like',
     initialSortVal: -1,
     ref: 'uid',

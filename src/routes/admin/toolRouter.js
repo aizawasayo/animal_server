@@ -15,13 +15,7 @@ import {
 import Tool from '@/model/tool'
 
 // 工具列表路由
-router.get(
-  '/',
-  getList({
-    Model: Tool,
-    conditionKeys: ['isDIY', 'activity', 'channels'],
-  })
-)
+router.get('/', getList({ Model: Tool }))
 
 // 实时搜索工具名
 router.get('/search', searchAll({ Model: Tool }))

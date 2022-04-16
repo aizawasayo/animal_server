@@ -12,22 +12,7 @@ import { removeImage, removeAllImage } from '@/middlewares/common/removeImage'
 import Clothing from '@/model/clothing'
 
 // 服饰列表路由
-router.get(
-  '/',
-  getList({
-    Model: Clothing,
-    conditionKeys: [
-      'type',
-      'color',
-      'theme',
-      'activity',
-      'channels',
-      'style',
-      'orderType',
-      'saleTime',
-    ],
-  })
-)
+router.get('/', getList({ Model: Clothing }))
 
 // 实时搜索全部符合条件的服饰
 router.get('/search', searchAll({ Model: Clothing }))

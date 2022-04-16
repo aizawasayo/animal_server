@@ -20,7 +20,6 @@ router.get(
   getList({
     Model: Banner,
     initialQueryKey: 'title',
-    conditionKeys: ['state'],
     initialSortKey: 'title',
   })
 )

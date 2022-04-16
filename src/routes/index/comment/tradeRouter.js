@@ -15,7 +15,6 @@ router.get(
   getList({
     Model: TradeComment,
     initialQueryKey: 'content',
-    conditionKeys: ['aid'],
     initialSortKey: 'like',
     initialSortVal: -1,
     ref: 'uid',

@@ -14,13 +14,7 @@ import {
 import Fish from '@/model/fish'
 
 // 鱼类列表路由
-router.get(
-  '/',
-  getList({
-    Model: Fish,
-    conditionKeys: ['shadow', 'locale', 'rarity', 'unlockCondition'],
-  })
-)
+router.get('/', getList({ Model: Fish }))
 
 // 鱼类添加功能路由
 router.post('/', auth, removeAvatar(Fish), addData({ Model: Fish }))

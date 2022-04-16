@@ -12,22 +12,7 @@ import { removeImage, removeAllImage } from '@/middlewares/common/removeImage'
 import Furniture from '@/model/furniture'
 
 // 分页列表路由
-router.get(
-  '/',
-  getList({
-    Model: Furniture,
-    conditionKeys: [
-      'type',
-      'channels',
-      'size',
-      'remould',
-      'orderType',
-      'series',
-      'character',
-      'npc',
-    ],
-  })
-)
+router.get('/', getList({ Model: Furniture }))
 
 // 实时搜索全部符合条件的家具
 router.get('/search', searchAll({ Model: Furniture }))

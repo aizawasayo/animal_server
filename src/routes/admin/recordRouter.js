@@ -11,7 +11,7 @@ import { removeImage, removeAllImage } from '@/middlewares/common/removeImage'
 import Record from '@/model/record'
 
 // 唱片列表路由
-router.get('/', getList({ Model: Record, conditionKeys: ['channel'] }))
+router.get('/', getList({ Model: Record }))
 
 // 唱片添加功能路由
 router.post('/', auth, removeImage(Record), addData({ Model: Record }))
