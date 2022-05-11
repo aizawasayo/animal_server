@@ -29,7 +29,7 @@ router.post(
 )
 
 // 菜市场评论查询路由
-router.get('/:id', getById({ Model: TurnipComment }))
+router.get('/:id', getById({ Model: TurnipComment, ref: 'uid' }))
 
 // 删除菜市场评论
 router.delete('/:id', auth, deleteById({ Model: TurnipComment }))

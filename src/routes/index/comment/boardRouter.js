@@ -29,7 +29,7 @@ router.post(
 )
 
 // 森友墙评论查询路由
-router.get('/:id', getById({ Model: BoardComment }))
+router.get('/:id', getById({ Model: BoardComment, ref: 'uid' }))
 
 // 删除森友墙评论
 router.delete('/:id', auth, deleteById({ Model: BoardComment }))

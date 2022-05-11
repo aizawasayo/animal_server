@@ -36,9 +36,9 @@ export default async (ctx, next) => {
         },
       }
     } else {
-      throw errs.ParameterException('密码错误！')
+      throw new errs.ParameterException('密码错误！')
     }
   } else {
-    throw errs.ParameterException('用户名错误！')
+    throw new errs.ParameterException('用户名错误！')
   }
 }

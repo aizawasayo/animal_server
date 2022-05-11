@@ -29,7 +29,7 @@ router.post(
 )
 
 // 交易评论查询路由
-router.get('/:id', getById({ Model: TradeComment }))
+router.get('/:id', getById({ Model: TradeComment, ref: 'uid' }))
 
 // 删除交易评论
 router.delete('/:id', auth, deleteById({ Model: TradeComment }))

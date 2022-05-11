@@ -29,7 +29,7 @@ router.post(
 )
 
 // 攻略评论查询路由
-router.get('/:id', getById({ Model: GuideComment }))
+router.get('/:id', getById({ Model: GuideComment, ref: 'uid' }))
 
 // 删除攻略评论
 router.delete('/:id', auth, deleteById({ Model: GuideComment }))

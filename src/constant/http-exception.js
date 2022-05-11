@@ -34,8 +34,8 @@ class AuthFailed extends HttpException {
   constructor(message, errorCode) {
     super()
     this.errorCode = errorCode || 10002
-    this.message = message || '授权失败'
     this.code = 401
+    this.message = message || '授权失败'
     this.status = 401
   }
 }
@@ -44,8 +44,8 @@ class Forbidden extends HttpException {
   constructor(message, errorCode) {
     super()
     this.errorCode = errorCode || 10003
-    this.message = message || '禁止访问'
     this.code = 403
+    this.message = message || '禁止访问'
     this.status = 403
   }
 }

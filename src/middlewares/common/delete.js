@@ -19,7 +19,7 @@ export default props => {
           ctx.body = deleteSuccess
         }
       } else {
-        throw errs.HttpException('删除失败')
+        throw new errs.HttpException('删除失败')
       }
     } catch (err) {
       next(err)
