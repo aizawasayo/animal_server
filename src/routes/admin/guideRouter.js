@@ -24,7 +24,7 @@ router.get(
   })
 )
 
-// 攻略添加功能路由
+// 攻略添加/修改功能路由
 router.post(
   '/',
   auth,

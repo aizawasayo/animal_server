@@ -9,7 +9,7 @@ export const removeAvatar = (Model, imgKey) => {
   return async (ctx, next) => {
     const postData = ctx.request.body
     if (imgKey) imageType = imgKey
-    if (postData._id) {
+    if (postData._id && postData[imageType]) {
       try {
         const doc = await Model.findById(postData._id)
 
