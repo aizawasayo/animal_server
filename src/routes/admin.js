@@ -6,6 +6,7 @@ const adminRouter = new Router({ prefix: '/admin' })
 
 import login from '@/routes/admin/login'
 import logout from '@/routes/admin/logout'
+import sendMessage from '@/routes/admin/sendMessage'
 
 import { registerRouter } from '@/utils'
 import uploadSingle from '@/middlewares/upload/uploadSingle'
@@ -73,5 +74,8 @@ adminRouter.post('/login', login)
 
 // 用户登出
 adminRouter.post('/logout', logout)
+
+// 短信验证码
+adminRouter.post('/message', sendMessage)
 
 export default adminRouter
